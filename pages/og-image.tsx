@@ -5,14 +5,12 @@ import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
-  const {query} = useRouter();
-  console.log('====================================');
-  console.log(query);
-  console.log('====================================');
+  const {query} = useRouter()
   return (
     <div className={styles.container}>
       <Head>
-        <title>Hello There!  </title>
+        <title>Hello There! {query?.title||'Mate'} </title>
+        <meta property="og:image" content={`https://next-dynamic-og-image.vercel.app/api/og?title=${query?.title}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
