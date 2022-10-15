@@ -5,10 +5,6 @@ import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
-  const {query} = useRouter();
-  console.log('====================================');
-  console.log(query);
-  console.log('====================================');
   return (
     <div className={styles.container}>
       <Head>
