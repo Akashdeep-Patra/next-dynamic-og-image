@@ -1,16 +1,23 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
-  const {query} = useRouter()
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props:{
+      title: context.query?.title??'Mate'
+    }
+  }
+}
+const Home: NextPage = ({title}:InferGetServerSidePropsType<typeof getServerSideProps>) => {
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Hello There! {query?.title||'Mate'} </title>
-        <meta property="og:image" content={`https://next-dynamic-og-image.vercel.app/api/og?title=${query?.title}`} />
+        <title>Hello There! {title} </title>
+        <meta property="og:image" content={`https://next-dynamic-og-image.vercel.app/api/og?title=${title}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
